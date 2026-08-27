@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Aurora Clock — New Tab",
+  "short_name": "Aurora Clock",
+  "version": "1.0.0",
+  "description": "A full-screen analog & digital clock for every new tab, with live location, UTC time, smooth animations, and full color customization.",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage"]
+}
