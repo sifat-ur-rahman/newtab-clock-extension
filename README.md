@@ -5,6 +5,26 @@ A full-screen New Tab replacement built with **React + TypeScript + Tailwind CSS
 
 ---
 
+## 🚀 Quick Install (no coding required)
+
+You don't need Node.js or to build anything to use this extension. Just grab the pre-built version:
+
+1. Go to the **[Releases](../../releases)** page of this repo.
+2. Under the latest release, download **`aurora-clock-extension.zip`**.
+3. Unzip it — you'll get a folder (e.g. `aurora-clock-extension`).
+4. Open Chrome and go to `chrome://extensions`.
+5. Turn on **Developer mode** (top-right toggle).
+6. Click **Load unpacked** and select the unzipped folder.
+7. Open a new tab — enjoy your clock! 🎉
+
+> This isn't published on the Chrome Web Store (that requires a one-time $5 developer fee and a review process). Loading it as an "unpacked" extension this way is completely free and works exactly the same — Chrome just shows a small "Developer mode extensions" notice in the toolbar, which is normal.
+
+If you'd rather build it from source yourself, or want to modify the code, see the **Developer Setup** below.
+
+---
+
+## 👩‍💻 Developer Setup
+
 ## 1. What's in this folder
 
 ```
@@ -137,6 +157,29 @@ Add or edit swatches in the `PRESET_THEMES` array in the same file.
 - **Blank new tab / white screen** → Open `chrome://extensions`, click **Errors** on the extension card, and check the console. Usually fixed by re-running `npm run build`.
 - **Colors not saving** → Confirm the extension has the `storage` permission (it's in `manifest.json` by default) and that you loaded it as an unpacked extension (not just previewed via `npm run dev`).
 - **Location says "Couldn't resolve city name"** → This means geolocation succeeded but the network request to the reverse-geocoding API failed (e.g. offline). Time and UTC will still work fine.
+
+---
+
+## 11. Publishing this repo & releases (maintainer notes)
+
+This repo includes a GitHub Actions workflow (`.github/workflows/release.yml`) that automatically builds the extension and attaches a ready-to-install `aurora-clock-extension.zip` to a GitHub Release, every time you push a version tag. This is what powers the **Quick Install** section above — completely free, no Chrome Web Store account needed.
+
+To publish a new version:
+
+```bash
+git add .
+git commit -m "Release v1.0.0"
+git tag v1.0.0
+git push origin main --tags
+```
+
+Pushing the tag triggers the workflow, which builds the project and creates a Release with the zip attached automatically. Repeat with `v1.0.1`, `v1.1.0`, etc. for future updates.
+
+If you'd rather create the first release by hand instead of waiting on Actions:
+1. Run `npm run build` locally, then zip the contents of `dist/` into `aurora-clock-extension.zip`.
+2. On GitHub, go to **Releases → Draft a new release**.
+3. Enter a tag (e.g. `v1.0.0`), a title, and attach the zip.
+4. Click **Publish release**.
 
 ---
 
