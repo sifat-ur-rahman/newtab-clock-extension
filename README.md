@@ -1,4 +1,5 @@
 # Aurora Clock — New Tab Extension
+
 ### Setup & Installation Guide
 
 A full-screen New Tab replacement built with **React + TypeScript + Tailwind CSS**, featuring an animated analog + digital clock, live geolocation, UTC time, and full color customization — default theme color `#29173F`.
@@ -17,9 +18,7 @@ You don't need Node.js or to build anything to use this extension. Just grab the
 6. Click **Load unpacked** and select the unzipped folder.
 7. Open a new tab — enjoy your clock! 🎉
 
-> This isn't published on the Chrome Web Store (that requires a one-time $5 developer fee and a review process). Loading it as an "unpacked" extension this way is completely free and works exactly the same — Chrome just shows a small "Developer mode extensions" notice in the toolbar, which is normal.
-
-If you'd rather build it from source yourself, or want to modify the code, see the **Developer Setup** below.
+> If you'd rather build it from source yourself, or want to modify the code, see the **Developer Setup** below.
 
 ---
 
@@ -53,10 +52,12 @@ newtab-clock-extension/
 ## 2. Prerequisites
 
 - **Node.js 18+** and **npm** installed → check with:
+
   ```bash
   node -v
   npm -v
   ```
+
   If you don't have Node, download it from https://nodejs.org
 
 - **Google Chrome** (or any Chromium browser: Edge, Brave, Arc, etc.)
@@ -99,15 +100,15 @@ This compiles the React/TypeScript/Tailwind code and outputs a ready-to-load ext
 
 ## 6. Using the extension
 
-| Feature | How |
-|---|---|
-| **Live analog + digital clock** | Shown automatically, updates every second with smooth animated hands |
-| **Live location** | On first run, Chrome will ask for location permission — click **Allow** to show your city (e.g. "Dhaka, Bangladesh"). If you deny it, it falls back to your system timezone. |
-| **UTC time** | Always shown in the pill badge under your local time |
-| **Color customization** | Click the ⚙️ gear icon (top-right) to open the theme panel: pick a preset, or use the color pickers to set any **Primary** / **Accent** color. Choices are saved automatically (via `chrome.storage`) and persist across sessions. |
-| **Show/hide seconds** | Toggle in the settings panel |
-| **Clock style** | Choose **Analog**, **Digital**, or **Both** in the settings panel |
-| **Responsive layout** | Resize the window / use on any screen size — the layout reflows from a stacked mobile layout to a side-by-side desktop layout |
+| Feature                         | How                                                                                                                                                                                                                                |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Live analog + digital clock** | Shown automatically, updates every second with smooth animated hands                                                                                                                                                               |
+| **Live location**               | On first run, Chrome will ask for location permission — click **Allow** to show your city (e.g. "Dhaka, Bangladesh"). If you deny it, it falls back to your system timezone.                                                       |
+| **UTC time**                    | Always shown in the pill badge under your local time                                                                                                                                                                               |
+| **Color customization**         | Click the ⚙️ gear icon (top-right) to open the theme panel: pick a preset, or use the color pickers to set any **Primary** / **Accent** color. Choices are saved automatically (via `chrome.storage`) and persist across sessions. |
+| **Show/hide seconds**           | Toggle in the settings panel                                                                                                                                                                                                       |
+| **Clock style**                 | Choose **Analog**, **Digital**, or **Both** in the settings panel                                                                                                                                                                  |
+| **Responsive layout**           | Resize the window / use on any screen size — the layout reflows from a stacked mobile layout to a side-by-side desktop layout                                                                                                      |
 
 ---
 
@@ -176,6 +177,7 @@ git push origin main --tags
 Pushing the tag triggers the workflow, which builds the project and creates a Release with the zip attached automatically. Repeat with `v1.0.1`, `v1.1.0`, etc. for future updates.
 
 If you'd rather create the first release by hand instead of waiting on Actions:
+
 1. Run `npm run build` locally, then zip the contents of `dist/` into `aurora-clock-extension.zip`.
 2. On GitHub, go to **Releases → Draft a new release**.
 3. Enter a tag (e.g. `v1.0.0`), a title, and attach the zip.
