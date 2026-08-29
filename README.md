@@ -4,7 +4,7 @@
 
 A full-screen New Tab replacement built with **React + TypeScript + Tailwind CSS**, featuring an animated analog + digital clock, live geolocation, UTC time, and full color customization — default theme color `#29173F`.
 
----
+## ![Logo](/public/Screenshot.png)
 
 ## 🚀 Quick Install (no coding required)
 
