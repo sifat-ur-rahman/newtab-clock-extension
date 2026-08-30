@@ -13,7 +13,8 @@ export default function UTCClock({ date }: UTCClockProps) {
         UTC
       </span>
       <span className="font-display text-sm sm:text-base font-medium text-white/85 tabular-nums">
-        {h}:{m}:{s}
+        {h}:{m}
+        {/* :{s} */}
       </span>
     </div>
   );

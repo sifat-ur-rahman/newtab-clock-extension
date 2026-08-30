@@ -6,9 +6,18 @@ interface SettingsPanelProps {
   settings: ThemeSettings;
   onChange: (patch: Partial<ThemeSettings>) => void;
   onReset: () => void;
+  setShowTimeZone: React.Dispatch<React.SetStateAction<boolean>>;
+
+  showTimeZone: boolean;
 }
 
-export default function SettingsPanel({ settings, onChange, onReset }: SettingsPanelProps) {
+export default function SettingsPanel({
+  settings,
+  onChange,
+  onReset,
+  setShowTimeZone,
+  showTimeZone,
+}: SettingsPanelProps) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -17,7 +26,10 @@ export default function SettingsPanel({ settings, onChange, onReset }: SettingsP
     if (!open) return;
 
     function handleOutside(e: MouseEvent | TouchEvent) {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
         setOpen(false);
       }
     }
@@ -30,8 +42,17 @@ export default function SettingsPanel({ settings, onChange, onReset }: SettingsP
     };
   }, [open]);
 
+  const handelReset = () => {
+    onReset();
+    setOpen(false);
+    setShowTimeZone(false);
+  };
+
   return (
-    <div ref={containerRef} className="fixed top-4 right-4 sm:top-6 sm:right-6 z-20">
+    <div
+      ref={containerRef}
+      className="fixed top-4 right-4 sm:top-6 sm:right-6 z-20"
+    >
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Customize theme"
@@ -56,7 +77,9 @@ export default function SettingsPanel({ settings, onChange, onReset }: SettingsP
           {PRESET_THEMES.map((preset) => (
             <button
               key={preset.name}
-              onClick={() => onChange({ primary: preset.primary, accent: preset.accent })}
+              onClick={() =>
+                onChange({ primary: preset.primary, accent: preset.accent })
+              }
               className={`group flex flex-col items-center gap-1 rounded-lg border p-2 transition hover:border-white/40 ${
                 settings.primary.toLowerCase() === preset.primary.toLowerCase()
                   ? "border-white/60"
@@ -87,7 +110,9 @@ export default function SettingsPanel({ settings, onChange, onReset }: SettingsP
                 onChange={(e) => onChange({ primary: e.target.value })}
                 className="h-6 w-6 cursor-pointer rounded bg-transparent"
               />
-              <span className="text-[11px] uppercase text-white/60">{settings.primary}</span>
+              <span className="text-[11px] uppercase text-white/60">
+                {settings.primary}
+              </span>
             </div>
           </label>
 
@@ -100,11 +125,29 @@ export default function SettingsPanel({ settings, onChange, onReset }: SettingsP
                 onChange={(e) => onChange({ accent: e.target.value })}
                 className="h-6 w-6 cursor-pointer rounded bg-transparent"
               />
-              <span className="text-[11px] uppercase text-white/60">{settings.accent}</span>
+              <span className="text-[11px] uppercase text-white/60">
+                {settings.accent}
+              </span>
             </div>
           </label>
         </div>
 
+        <div className="mb-4 flex items-center justify-between">
+          <span className="text-xs text-white/70">Show seconds</span>
+          <button
+            onClick={() => setShowTimeZone(!showTimeZone)}
+            className={`relative h-6 w-11 rounded-full transition-colors ${
+              showTimeZone ? "bg-accent" : "bg-white/15"
+            }`}
+            aria-pressed={showTimeZone}
+          >
+            <span
+              className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
+                showTimeZone ? "-translate-x-5" : "translate-x-0.5"
+              }`}
+            />
+          </button>
+        </div>
         <div className="mb-4 flex items-center justify-between">
           <span className="text-xs text-white/70">Show seconds</span>
           <button
@@ -142,7 +185,7 @@ export default function SettingsPanel({ settings, onChange, onReset }: SettingsP
         </div>
 
         <button
-          onClick={onReset}
+          onClick={handelReset}
           className="w-full rounded-lg border border-white/10 py-2 text-xs text-white/60 transition hover:border-white/30 hover:text-white"
         >
           Reset to default
@@ -154,7 +197,13 @@ export default function SettingsPanel({ settings, onChange, onReset }: SettingsP
 
 function GearIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M12 15a3 3 0 100-6 3 3 0 000 6z"
         stroke="currentColor"

@@ -8,12 +8,13 @@ import UTCClock from "./components/UTCClock";
 import BackgroundOrbs from "./components/BackgroundOrbs";
 import SettingsPanel from "./components/SettingsPanel";
 import DigitalClock24 from "./components/DigitalClock24";
+import { useState } from "react";
 
 export default function App() {
   const now = useClock();
   const location = useLocation();
   const { settings, update, reset, ready } = useSettings();
-
+  const [showTimeZone, setShowTimeZone] = useState(false);
   if (!ready) return null;
 
   return (
@@ -25,15 +26,25 @@ export default function App() {
       }}
     >
       <BackgroundOrbs />
-      <SettingsPanel settings={settings} onChange={update} onReset={reset} />
+      <SettingsPanel
+        settings={settings}
+        onChange={update}
+        onReset={reset}
+        setShowTimeZone={setShowTimeZone}
+        showTimeZone={showTimeZone}
+      />
 
       <main className="relative z-10 flex w-full max-w-4xl flex-col items-center justify-center gap-8 px-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
-        <div className="flex w-full flex-col items-center justify-center gap-4 text-center sm:w-auto sm:items-start sm:text-left">
+        <div className="flex w-full flex-col items-center justify-center gap-3 text-center sm:w-auto sm:items-start sm:text-left">
           {(settings.clockStyle === "digital" ||
             settings.clockStyle === "both") && (
             <DigitalClock date={now} showSeconds={settings.showSeconds} />
           )}
-          <LocationBadge location={location} date={now} />
+          <LocationBadge
+            location={location}
+            date={now}
+            showTimeZone={showTimeZone}
+          />
           <div className="flex w-full md:flex-row flex-col  items-center justify-center gap-4 text-center sm:w-auto sm:items-start sm:text-left">
             <DigitalClock24 date={now} showSeconds={settings.showSeconds} />
             <UTCClock date={now} />

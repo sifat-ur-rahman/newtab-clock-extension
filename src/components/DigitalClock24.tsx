@@ -18,7 +18,7 @@ export default function DigitalClock24({
 
       <span className="font-display text-sm font-medium tabular-nums text-white/85 sm:text-base">
         {h}:{m}
-        {showSeconds && `:${s}`}
+        {/* {showSeconds && `:${s}`} */}
       </span>
     </div>
   );
