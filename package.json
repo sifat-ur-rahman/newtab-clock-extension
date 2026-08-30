@@ -1,7 +1,7 @@
 {
   "name": "aurora-newtab-clock",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Chrome New Tab extension: full-screen analog + digital clock with live location, UTC time and color customization.",
   "type": "module",
   "scripts": {
