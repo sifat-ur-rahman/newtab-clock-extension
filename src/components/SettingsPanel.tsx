@@ -133,7 +133,7 @@ export default function SettingsPanel({
         </div>
 
         <div className="mb-4 flex items-center justify-between">
-          <span className="text-xs text-white/70">Show seconds</span>
+          <span className="text-xs text-white/70">Show time zone</span>
           <button
             onClick={() => setShowTimeZone(!showTimeZone)}
             className={`relative h-6 w-11 rounded-full transition-colors ${
